@@ -9,7 +9,7 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route path="/pokemon/:id">
+        <Route path="/dashboard">
           <Dashboard />
         </Route>
       </Switch>
