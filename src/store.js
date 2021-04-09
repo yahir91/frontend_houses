@@ -5,5 +5,6 @@ import userDataReducer from './redux/userData';
 export default configureStore({
   reducer: {
     authentication: authenticationReducer,
+    userData: userDataReducer
   },
 });

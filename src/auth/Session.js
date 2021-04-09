@@ -5,10 +5,9 @@ import { addUserData } from "../redux/userData";
 import { changeLogStatus } from "../redux/authentication";
 import { useHistory } from "react-router-dom";
 
-const Registration = () => {
+const Session = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [password_confirmation, setPasswordConfirmation] = useState("");
   const [registrationErrors, setRegistrationErrors] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
@@ -16,19 +15,20 @@ const Registration = () => {
     e.preventDefault();
     axios
       .post(
-        "http://localhost:4000/registration",
+        "http://localhost:4000/sessions",
         {
           user: {
             username: username,
             password: password,
-            password_confirmation: password_confirmation,
           },
         },
         { withCredentials: true }
       )
       .then((res) => {
+          console.log(res.data)
         if (res.data.status === "created") {
           dispatch(changeLogStatus(true));
+          console.log('hello')
           dispatch(addUserData(res.data.user));
           history.push("/dashboard");
         }
@@ -55,17 +55,10 @@ const Registration = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <input
-          type="password"
-          placeholder="Password Confirmation"
-          value={password_confirmation}
-          onChange={(e) => setPasswordConfirmation(e.target.value)}
-          required
-        />
-        <button type="Submit">Register</button>
+        <button type="Submit">Log In</button>
       </form>
     </div>
   );
 };
 
-export default Registration;
+export default Session;
