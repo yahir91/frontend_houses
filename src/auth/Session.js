@@ -4,13 +4,15 @@ import axios from "axios";
 import { addUserData } from "../redux/userData";
 import { changeLogStatus } from "../redux/authentication";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const Session = () => {
+const Session = ({handleSession}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [registrationErrors, setRegistrationErrors] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
+  const { status } = useSelector((state) => state.authentication);
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -27,16 +29,16 @@ const Session = () => {
       .then((res) => {
           console.log(res.data)
         if (res.data.status === "created") {
-          dispatch(changeLogStatus(true));
-          console.log('hello')
-          dispatch(addUserData(res.data.user));
-          history.push("/dashboard");
+          dispatch(addUserData(res.data.user))
+          dispatch(changeLogStatus('log_in'))
+          history.push('/dashboard')
         }
       })
       .catch((error) => {
         console.log("registration error", error);
       });
   };
+
 
   return (
     <div>

@@ -5,6 +5,7 @@ import { addUserData } from "../redux/userData";
 import { changeLogStatus } from "../redux/authentication";
 import { useHistory } from "react-router-dom";
 
+
 const Registration = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -12,6 +13,7 @@ const Registration = () => {
   const [registrationErrors, setRegistrationErrors] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -28,7 +30,7 @@ const Registration = () => {
       )
       .then((res) => {
         if (res.data.status === "created") {
-          dispatch(changeLogStatus(true));
+          dispatch(changeLogStatus('log_in'));
           dispatch(addUserData(res.data.user));
           history.push("/dashboard");
         }
