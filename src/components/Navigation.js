@@ -1,9 +1,17 @@
 import "../styles/navigation.css";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { changeToogle } from "../redux/toogle";
+import { useSelector } from "react-redux";
 
 
 const Navigation = () => {
+    const dispatch = useDispatch()
+    const { toogle } = useSelector((state) => state.toogle);
+
     const toogleData = () => {
-    
+    dispatch(changeToogle(toogle? false: true))
+    console.log(toogle)
     }
     return ( 
         <div className="navigation">

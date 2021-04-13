@@ -1,8 +1,13 @@
 import ScrollMenu from "react-horizontal-scrolling-menu";
 import Arrow from "./Arrow";
 import HouseList from "../container/HouseList";
-import "../styles/houseList.css";
 import Navigation from "./Navigation";
+import Dropdown from "./Dropdown";
+import { useSelector } from "react-redux";
+import "../styles/houseList.css";
+import "../styles/dashboard.css";
+
+
 
 const Dashboard = () => {
   const list = [
@@ -29,9 +34,12 @@ const Dashboard = () => {
   const menuItems = HouseList({ list });
   const ArrowLeft = Arrow({ text: "", className: "arrow-prev" });
   const ArrowRight = Arrow({ text: "", className: "arrow-next" });
+  const { toogle } = useSelector((state) => state.toogle);
 
   return (
-    <div>
+    <div className='dashboard'>
+      {toogle && <Dropdown />}
+      <div>
       <Navigation />
       <div className="scroll">
         <ScrollMenu
@@ -39,6 +47,7 @@ const Dashboard = () => {
           arrowLeft={ArrowLeft}
           arrowRight={ArrowRight}
         />
+      </div>
       </div>
     </div>
   );

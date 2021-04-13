@@ -1,18 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export const counterSlice = createSlice({
-  name: 'userData',
+  name: 'toogle',
   initialState: {
-    user: {},
+    toogle: false,
   },
   reducers: {
-    addUserData: (state, action) => {
+    changeToogle: (state, action) => {
       const tempState = state;
-      tempState.user = action.payload;
+      tempState.toogle = action.payload;
     },
   },
 });
 
-export const { addUserData } = counterSlice.actions;
+export const { changeToogle } = counterSlice.actions;
 
 export default counterSlice.reducer;
