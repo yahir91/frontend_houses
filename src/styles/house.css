@@ -1,0 +1,36 @@
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    border-radius: 2%;
+    margin: 10px 20px;
+    padding: 0;
+    background-color: rgb(211, 211, 216);
+}
+
+.houseImage {
+    width: 230px;
+    height: 250px;
+    border-radius: 2% 2% 0% 0%;
+}
+
+.card-info {
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    margin-top: 5px;
+}
+
+.card-info h2 {
+    font-size: 0.8em;
+}
+
+.card-info p {
+    margin: 0;
+    font-size: 0.8em;
+}
+
+.card-info span {
+    font-weight: 100;
+    font-size: 0.7em;
+    color: rgb(163, 168, 168);
+}
