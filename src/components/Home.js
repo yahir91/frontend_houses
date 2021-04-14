@@ -7,9 +7,6 @@ const Home = () => {
 
   return (
     <div>
-      <h1>home</h1>
-      <h1>status:{status}</h1>
-      <Registration />
       <Session />
     </div>
   );

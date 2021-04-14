@@ -8,9 +8,9 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ProtectedRoute from "./components/ProtectedRoute";
 import axios from "axios";
-import HouseList from "./container/HouseList";
 import "./App.css";
 import Navlinks from "./components/Navlinks";
+import HouseDetail from './components/HouseDetail';
 
 const fetchItems = (status) => async (dispatch) => {
   axios
@@ -19,13 +19,13 @@ const fetchItems = (status) => async (dispatch) => {
       if (res.data.logged_in && status === "not_log") {
         dispatch(changeLogStatus("log_in"));
         dispatch(addUserData(res.data.user));
-        console.log(status)
+        console.log(status);
       } else if (!res.data.logged_in && status === "log_in") {
         dispatch(changeLogStatus("not_log"));
         dispatch(addUserData({}));
         console.log("hel");
       } else {
-        console.log(status)
+        console.log(status);
       }
     })
     .catch((error) => {
@@ -43,28 +43,6 @@ function App() {
     dispatch(fetchItems(status));
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:4000/logged_in", { withCredentials: true })
-  //     .then((res) => {
-  //       if (res.data.logged_in && status === "not_log") {
-  //         status = "log_in";
-  //         user = res.data.user;
-  //         console.log(status);
-  //         console.log(user);
-  //       } else if (!res.data.logged_in && status === "log_in") {
-  //         dispatch(changeLogStatus("not_log"));
-  //         dispatch(addUserData({}));
-  //         console.log("hel");
-  //       } else {
-  //         console.log(status);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log("somethin wrong", error);
-  //     });
-  // }, []);
-
   return (
     <Router>
       <Switch>
@@ -80,6 +58,9 @@ function App() {
           status={status}
           component={Dashboard}
         />
+        <Route exact path={"/house/:id"}>
+          <HouseDetail />
+        </Route>
       </Switch>
     </Router>
   );

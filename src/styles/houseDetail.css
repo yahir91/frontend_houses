@@ -1,21 +1,19 @@
-.menu-item {
+.menu-item-detail {
     display: flex;
     flex-direction: column;
-    border-radius: 2%;
-    margin: 10px 20px;
-    padding: 0;
+    /* border-radius: 2%; */
     background-color: #ffffff;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    height: 60%
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    height: 60%;
+    /* width: 100vw; */
 }
 
-.houseImage {
-    width: 230px;
+.houseImage-detail {
+    width: 100%;
     height: 350px;
-    border-radius: 2% 2% 0% 0%;
 }
 
-.card-info {
+.card-info-detail {
     display: flex;
     justify-content: space-between;
     height: 60px;
@@ -23,16 +21,16 @@
     padding: 5px;
 }
 
-.card-info h2 {
+.card-info-detail h2 {
     font-size: 0.8em;
 }
 
-.card-info p {
+.card-info-detail p {
     margin: 0;
     font-size: 0.8em;
 }
 
-.card-info span {
+.card-info-detail span {
     font-weight: 100;
     font-size: 0.7em;
     color: rgb(163, 168, 168);

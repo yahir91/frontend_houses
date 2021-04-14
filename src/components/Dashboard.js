@@ -7,8 +7,6 @@ import { useSelector } from "react-redux";
 import "../styles/houseList.css";
 import "../styles/dashboard.css";
 
-
-
 const Dashboard = () => {
   const list = [
     {
@@ -27,27 +25,30 @@ const Dashboard = () => {
     {
       title: "Forest Apartment",
       description: "An apartment for couple with the sight of the Forest",
-      image: "imgs/houses/webaliser-_TPTXZd9mOo-unsplash.jpg",
+      image: "/imgs/houses/webaliser-_TPTXZd9mOo-unsplash.jpg",
       rent: 3600,
     },
   ];
+
   const menuItems = HouseList({ list });
   const ArrowLeft = Arrow({ text: "", className: "arrow-prev" });
   const ArrowRight = Arrow({ text: "", className: "arrow-next" });
   const { toogle } = useSelector((state) => state.toogle);
 
   return (
-    <div className='dashboard'>
-      {toogle && <Dropdown />}
-      <div>
-      <Navigation />
-      <div className="scroll">
-        <ScrollMenu
-          data={menuItems}
-          arrowLeft={ArrowLeft}
-          arrowRight={ArrowRight}
-        />
-      </div>
+    <div>
+      <div className="dashboard">
+        {toogle && <Dropdown />}
+        <div>
+          <Navigation />
+          <div className={`scroll ${toogle ? "box-shadow" : ""}`}>
+            <ScrollMenu
+              data={menuItems}
+              arrowLeft={ArrowLeft}
+              arrowRight={ArrowRight}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
