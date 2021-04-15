@@ -9,18 +9,17 @@
     #f7f5fa
   );
   height: 100vh;
-
-  /* width: 100vw; */
 }
 
 .scroll {
   width: 100vw;
-  height: 85%;
+  height: 85vh;
   margin: 0 auto;
 }
 
 .box-shadow {
-  box-shadow: -10px 10px 15px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: -10px 10px 15px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .dropdown {
