@@ -6,31 +6,20 @@ import Dropdown from "./Dropdown";
 import { useSelector } from "react-redux";
 import "../styles/houseList.css";
 import "../styles/dashboard.css";
+import { useState } from 'react';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 const Dashboard = () => {
-  const list = [
-    {
-      title: "Beautiful family apartment",
-      description:
-        "Newly renovated rare studio apt on basement level with lots of light and luxury detail. Located in historic Williamsburg in a 1901 house",
-      image: "/imgs/houses/todd-kent-178j8tJrNlc-unsplash.jpg",
-      rent: 3600,
-    },
-    {
-      title: "Beach Apartment",
-      description: "An apartment for couple with the sight of the beach",
-      image: "/imgs/houses/todd-kent-178j8tJrNlc-unsplash.jpg",
-      rent: 3600,
-    },
-    {
-      title: "Forest Apartment",
-      description: "An apartment for couple with the sight of the Forest",
-      image: "/imgs/houses/webaliser-_TPTXZd9mOo-unsplash.jpg",
-      rent: 3600,
-    },
-  ];
-
-  const menuItems = HouseList({ list });
+  const [houseList, setHouseList] = useState(null);
+  const [urls, setUrls] = useState(null);
+  useEffect(() => {
+    axios.get("http://localhost:4000/houses").then((res) => {
+      setHouseList(res.data.house);
+      setUrls(res.data.urls);
+    });
+  }, []);
+  const menuItems = HouseList({ houseList, urls });
   const ArrowLeft = Arrow({ text: "", className: "arrow-prev" });
   const ArrowRight = Arrow({ text: "", className: "arrow-next" });
   const { toogle } = useSelector((state) => state.toogle);

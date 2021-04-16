@@ -11,6 +11,8 @@ import axios from "axios";
 import "./App.css";
 import Navlinks from "./components/Navlinks";
 import HouseDetail from './components/HouseDetail';
+import CreateHouse from './components/CreateHouse';
+import Show from './components/Show';
 
 const fetchItems = (status) => async (dispatch) => {
   axios
@@ -48,6 +50,12 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route exact path="/show">
+          <Show />
+        </Route>
+        <Route exact path="/create">
+          <CreateHouse />
         </Route>
         <Route exact path="/navlinks">
           <Navlinks />
