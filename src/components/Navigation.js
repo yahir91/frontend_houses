@@ -5,7 +5,7 @@ import { changeToogle } from "../redux/toogle";
 import { useSelector } from "react-redux";
 
 
-const Navigation = () => {
+const Navigation = ({handleFavorite, toogleFavorite}) => {
     const dispatch = useDispatch()
     const { toogle } = useSelector((state) => state.toogle);
 
@@ -17,7 +17,7 @@ const Navigation = () => {
         <div className="navigation">
             <img onClick={toogleData} className='option-img' src="/imgs/options.png" alt="options"/>
             <h2>Houses</h2>
-            <h2>Favorites</h2>
+            {!toogleFavorite? <h2 onClick={handleFavorite}>Favorites</h2>: <h2 onClick={handleFavorite}>All Houses</h2> }
         </div>
      );
 }

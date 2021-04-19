@@ -19,6 +19,7 @@
     "react-scripts": "4.0.3",
     "react-smooth-scroll-hook": "^1.3.4",
     "redux": "^4.0.5",
+    "universal-cookie": "^4.0.4",
     "web-vitals": "^1.1.1"
   },
   "scripts": {

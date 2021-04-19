@@ -4,15 +4,19 @@ import axios from "axios";
 import { addUserData } from "../redux/userData";
 import { changeLogStatus } from "../redux/authentication";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Cookies from "universal-cookie";
+import "../styles/session.css";
+
 
 
 const Registration = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirmation, setPasswordConfirmation] = useState("");
-  const [registrationErrors, setRegistrationErrors] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
+  const cookies = new Cookies();
  
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,6 +34,9 @@ const Registration = () => {
       )
       .then((res) => {
         if (res.data.status === "created") {
+          cookies.set("TOKEN", 'pacman', {
+            path: "/",
+          });
           dispatch(changeLogStatus('log_in'));
           dispatch(addUserData(res.data.user));
           history.push("/dashboard");
@@ -41,8 +48,13 @@ const Registration = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className='session'>
+      <div>
+        <img src="/imgs/background.jpg" alt="background" />
+        <h1>Register</h1>
+        <p>Hello there! Register and start managing your system</p>
+      </div>
+      <form className="form" onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Username"
@@ -58,6 +70,7 @@ const Registration = () => {
           required
         />
         <input
+          className="confirmation"
           type="password"
           placeholder="Password Confirmation"
           value={password_confirmation}
@@ -66,6 +79,7 @@ const Registration = () => {
         />
         <button type="Submit">Register</button>
       </form>
+      <Link to={'/'}><span>Sign in</span></Link>
     </div>
   );
 };

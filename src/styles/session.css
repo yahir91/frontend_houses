@@ -44,6 +44,17 @@
     height: 40px;
 }
 
+.confirmation {
+    border: none;
+    width: 70%;
+    margin: 10px auto;
+    background-color: transparent;
+    border: 1px solid #ec5200;
+    text-align: center;
+    border-radius: 16px;
+    height: 40px;
+}
+
 .form :last-child {
     width: 40%;
     margin: 10px auto;
@@ -69,7 +80,9 @@ p {
     font-size: 12px
 }
 
-span {
+a {
     text-align: center;
+}
+span {
     color: #808080;
 }

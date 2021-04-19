@@ -4,16 +4,17 @@ import axios from "axios";
 import { addUserData } from "../redux/userData";
 import { changeLogStatus } from "../redux/authentication";
 import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
+import Cookies from "universal-cookie";
 import "../styles/session.css";
+import { Link } from "react-router-dom";
 
-const Session = ({ handleSession }) => {
+
+const Session = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [registrationErrors, setRegistrationErrors] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
-  const { status } = useSelector((state) => state.authentication);
+  const cookies = new Cookies();
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -28,8 +29,10 @@ const Session = ({ handleSession }) => {
         { withCredentials: true }
       )
       .then((res) => {
-        console.log(res.data);
         if (res.data.status === "created") {
+          cookies.set("TOKEN", 'pacman', {
+            path: "/",
+          });
           dispatch(addUserData(res.data.user));
           dispatch(changeLogStatus("log_in"));
           history.push("/dashboard");
@@ -64,7 +67,7 @@ const Session = ({ handleSession }) => {
         />
         <button type="Submit">Sign In</button>
       </form>
-      <span>Forgot Password?</span>
+      <Link to={'/register'}><span>Register</span></Link>
     </div>
   );
 };

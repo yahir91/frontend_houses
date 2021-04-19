@@ -1,45 +1,35 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
-import Home from "./components/Home";
 import { useEffect } from "react";
 import { addUserData } from "./redux/userData";
 import { changeLogStatus } from "./redux/authentication";
-import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ProtectedRoute from "./components/ProtectedRoute";
 import axios from "axios";
 import "./App.css";
-import Navlinks from "./components/Navlinks";
 import HouseDetail from './components/HouseDetail';
 import CreateHouse from './components/CreateHouse';
-import Show from './components/Show';
+import Session from './auth/Session';
+import Registration from './auth/Registration';
 
 const fetchItems = (status) => async (dispatch) => {
   axios
     .get("http://localhost:4000/logged_in", { withCredentials: true })
     .then((res) => {
+      dispatch(addUserData(res.data.user));
       if (res.data.logged_in && status === "not_log") {
         dispatch(changeLogStatus("log_in"));
         dispatch(addUserData(res.data.user));
-        console.log(status);
       } else if (!res.data.logged_in && status === "log_in") {
         dispatch(changeLogStatus("not_log"));
         dispatch(addUserData({}));
-        console.log("hel");
-      } else {
-        console.log(status);
-      }
+      } 
     })
-    .catch((error) => {
-      console.log("something wrong:", error);
-    });
 };
 
 function App() {
   const dispatch = useDispatch();
-  const history = useHistory();
-  let { status } = useSelector((state) => state.authentication);
-  let { user } = useSelector((state) => state.userData);
+  const { status } = useSelector((state) => state.authentication);
 
   useEffect(() => {
     dispatch(fetchItems(status));
@@ -49,26 +39,24 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-          <Home />
+          <Session />
         </Route>
-        <Route exact path="/show">
-          <Show />
+        <Route exact path="/register">
+          <Registration />
         </Route>
         <Route exact path="/create">
           <CreateHouse />
         </Route>
-        <Route exact path="/navlinks">
-          <Navlinks />
-        </Route>
         <ProtectedRoute
           exact
           path="/dashboard"
-          status={status}
           component={Dashboard}
         />
-        <Route exact path={"/house/:id"}>
-          <HouseDetail />
-        </Route>
+        <ProtectedRoute
+          exact
+          path={"/house/:id"}
+          component={HouseDetail}
+        />
       </Switch>
     </Router>
   );
