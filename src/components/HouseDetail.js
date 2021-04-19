@@ -1,13 +1,12 @@
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
-import "../styles/houseDetail.css";
-import { useState } from "react";
-import axios from "axios";
-import { useEffect } from "react";
+import { useParams, Link } from 'react-router-dom';
+
+import '../styles/houseDetail.css';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const HouseDetail = () => {
   const { id } = useParams();
-  const arrow = "<";
+  const arrow = '<';
   const [house, setHouse] = useState(null);
   const [url, setUrl] = useState(null);
   const [favorite, setFavorite] = useState(null);
@@ -15,7 +14,7 @@ const HouseDetail = () => {
   useEffect(() => {
     axios
       .get(`http://localhost:4000/houses/${id}`, { withCredentials: true })
-      .then((res) => {
+      .then(res => {
         setHouse(res.data.house);
         setUrl(res.data.url);
         setFavorite(res.data.favorite);
@@ -25,15 +24,15 @@ const HouseDetail = () => {
   const addToFavorite = () => {
     axios
       .post(
-        "http://localhost:4000/favorites",
+        'http://localhost:4000/favorites',
         {
           house: {
-            id: id,
+            id,
           },
         },
-        { withCredentials: true }
+        { withCredentials: true },
       )
-      .then((res) => {
+      .then(res => {
         setFavorite(true);
       });
   };
@@ -41,7 +40,7 @@ const HouseDetail = () => {
   const deleteFromFavorite = () => {
     axios
       .delete(`http://localhost:4000/favorites/${id}`, { withCredentials: true })
-      .then((res) => {
+      .then(res => {
         setFavorite(false);
       });
   };
@@ -64,7 +63,10 @@ const HouseDetail = () => {
                 <p>*****</p>
               </div>
               <div>
-                <p>$ {house.rent}</p>
+                <p>
+                  $
+                  {house.rent}
+                </p>
                 <span>per month</span>
               </div>
             </div>

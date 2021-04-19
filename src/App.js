@@ -1,35 +1,35 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Dashboard from "./components/Dashboard";
-import { useEffect } from "react";
-import { addUserData } from "./redux/userData";
-import { changeLogStatus } from "./redux/authentication";
-import { useDispatch, useSelector } from "react-redux";
-import ProtectedRoute from "./components/ProtectedRoute";
-import axios from "axios";
-import "./App.css";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+import Dashboard from './components/Dashboard';
+import { addUserData } from './redux/userData';
+import { changeLogStatus } from './redux/authentication';
+import ProtectedRoute from './components/ProtectedRoute';
+import './App.css';
 import HouseDetail from './components/HouseDetail';
 import CreateHouse from './components/CreateHouse';
 import Session from './auth/Session';
 import Registration from './auth/Registration';
 
-const fetchItems = (status) => async (dispatch) => {
+const fetchItems = status => async dispatch => {
   axios
-    .get("http://localhost:4000/logged_in", { withCredentials: true })
-    .then((res) => {
+    .get('http://localhost:4000/logged_in', { withCredentials: true })
+    .then(res => {
       dispatch(addUserData(res.data.user));
-      if (res.data.logged_in && status === "not_log") {
-        dispatch(changeLogStatus("log_in"));
+      if (res.data.logged_in && status === 'not_log') {
+        dispatch(changeLogStatus('log_in'));
         dispatch(addUserData(res.data.user));
-      } else if (!res.data.logged_in && status === "log_in") {
-        dispatch(changeLogStatus("not_log"));
+      } else if (!res.data.logged_in && status === 'log_in') {
+        dispatch(changeLogStatus('not_log'));
         dispatch(addUserData({}));
-      } 
-    })
+      }
+    });
 };
 
 function App() {
   const dispatch = useDispatch();
-  const { status } = useSelector((state) => state.authentication);
+  const { status } = useSelector(state => state.authentication);
 
   useEffect(() => {
     dispatch(fetchItems(status));
@@ -54,7 +54,7 @@ function App() {
         />
         <ProtectedRoute
           exact
-          path={"/house/:id"}
+          path="/house/:id"
           component={HouseDetail}
         />
       </Switch>

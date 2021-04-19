@@ -1,9 +1,9 @@
-import Registration from "../auth/Registration";
-import Session from "../auth/Session";
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
+import Registration from '../auth/Registration';
+import Session from '../auth/Session';
 
 const Home = () => {
-  const { status } = useSelector((state) => state.authentication);
+  const { status } = useSelector(state => state.authentication);
 
   return (
     <div>

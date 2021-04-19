@@ -1,45 +1,43 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import axios from "axios";
-import { addUserData } from "../redux/userData";
-import { changeLogStatus } from "../redux/authentication";
-import { useHistory } from "react-router-dom";
-import Cookies from "universal-cookie";
-import "../styles/session.css";
-import { Link } from "react-router-dom";
-
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import { useHistory, Link } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+import { addUserData } from '../redux/userData';
+import { changeLogStatus } from '../redux/authentication';
+import '../styles/session.css';
 
 const Session = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const history = useHistory();
   const cookies = new Cookies();
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     axios
       .post(
-        "http://localhost:4000/sessions",
+        'http://localhost:4000/sessions',
         {
           user: {
-            username: username,
-            password: password,
+            username,
+            password,
           },
         },
-        { withCredentials: true }
+        { withCredentials: true },
       )
-      .then((res) => {
-        if (res.data.status === "created") {
-          cookies.set("TOKEN", 'pacman', {
-            path: "/",
+      .then(res => {
+        if (res.data.status === 'created') {
+          cookies.set('TOKEN', 'pacman', {
+            path: '/',
           });
           dispatch(addUserData(res.data.user));
-          dispatch(changeLogStatus("log_in"));
-          history.push("/dashboard");
+          dispatch(changeLogStatus('log_in'));
+          history.push('/dashboard');
         }
       })
-      .catch((error) => {
-        console.log("registration error", error);
+      .catch(error => {
+        console.log('registration error', error);
       });
   };
 
@@ -55,19 +53,19 @@ const Session = () => {
           type="text"
           placeholder="Username"
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={e => setUsername(e.target.value)}
           required
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={e => setPassword(e.target.value)}
           required
         />
         <button type="Submit">Sign In</button>
       </form>
-      <Link to={'/register'}><span>Register</span></Link>
+      <Link to="/register"><span>Register</span></Link>
     </div>
   );
 };
