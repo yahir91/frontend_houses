@@ -1,5 +1,6 @@
 import '../styles/navigation.css';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { changeToogle } from '../redux/toogle';
 
 const Navigation = ({ handleFavorite, toogleFavorite }) => {
@@ -11,11 +12,43 @@ const Navigation = ({ handleFavorite, toogleFavorite }) => {
   };
   return (
     <div className="navigation">
-      <img onClick={toogleData} className="option-img" src="/imgs/options.png" alt="options" />
+      <div
+        onClick={toogleData}
+        role="button"
+        tabIndex="0"
+        onKeyPress={toogleData}
+      >
+        <img className="option-img" src="/imgs/options.png" alt="options" />
+      </div>
       <h2>Houses</h2>
-      {!toogleFavorite ? <h2 onClick={handleFavorite}>Favorites</h2> : <h2 onClick={handleFavorite}>All Houses</h2> }
+      {!toogleFavorite ? (
+        <span
+          role="button"
+          tabIndex="0"
+          onKeyPress={handleFavorite}
+          type="button"
+          onClick={handleFavorite}
+        >
+          Favorites
+        </span>
+      ) : (
+        <span
+          role="button"
+          tabIndex="0"
+          onKeyPress={handleFavorite}
+          type="button"
+          onClick={handleFavorite}
+        >
+          All Houses
+        </span>
+      )}
     </div>
   );
+};
+
+Navigation.propTypes = {
+  handleFavorite: PropTypes.func.isRequired,
+  toogleFavorite: PropTypes.func.isRequired,
 };
 
 export default Navigation;

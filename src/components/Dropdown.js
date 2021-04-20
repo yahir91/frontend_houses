@@ -21,9 +21,6 @@ const Dropwdown = () => {
           dispatch(addUserData({}));
           cookies.remove('TOKEN', { path: '/' });
         }
-      })
-      .catch(error => {
-        console.log('succesfully log out', error);
       });
   };
   return (
@@ -37,7 +34,7 @@ const Dropwdown = () => {
       <span>Statistic</span>
       <div className="help">
         <span>Help</span>
-        <span onClick={handleLogOut}>Log Out</span>
+        <span role="button" tabIndex="0" onKeyPress={handleLogOut} onClick={handleLogOut}>Log Out</span>
       </div>
     </div>
   );

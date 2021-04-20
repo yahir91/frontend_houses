@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import PropTypes from 'prop-types';
+/* eslint-disable react/jsx-props-no-spreading */
 
 const cookies = new Cookies();
 
@@ -28,8 +29,8 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
 );
 
 ProtectedRoute.propTypes = {
-  index: PropTypes.number.isRequired,
-  component
+  component: PropTypes.elementType.isRequired,
+  location: PropTypes.elementType.isRequired,
 };
 
 export default ProtectedRoute;

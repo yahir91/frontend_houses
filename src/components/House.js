@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import '../styles/house.css';
+import PropTypes from 'prop-types';
 
 const House = ({ house, index, urls }) => (
   <Link to={`/house/${house.id}`}>
@@ -23,5 +24,16 @@ const House = ({ house, index, urls }) => (
     )}
   </Link>
 );
+
+House.propTypes = {
+  house: PropTypes.exact({
+    title: PropTypes.string,
+    rent: PropTypes.string,
+    description: PropTypes.string,
+    id: PropTypes.number,
+  }).isRequired,
+  index: PropTypes.number.isRequired,
+  urls: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 export default House;

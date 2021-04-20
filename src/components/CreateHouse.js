@@ -13,7 +13,6 @@ const CreateHouse = () => {
     formData.append('description', description);
     formData.append('rent', rent);
     formData.append('image', image);
-    console.log(title, description, rent, image);
     axios
       .post(
         'http://localhost:4000/houses',
@@ -23,16 +22,7 @@ const CreateHouse = () => {
             'Content-Type': 'multipart/form-data',
           },
         },
-      )
-      .then(res => {
-        console.log('posted', res);
-        console.log(formData);
-        console.log(e.target);
-      })
-      .catch(error => {
-        console.log(formData);
-        console.log(error);
-      });
+      );
   };
 
   return (

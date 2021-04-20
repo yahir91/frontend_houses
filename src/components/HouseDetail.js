@@ -32,7 +32,7 @@ const HouseDetail = () => {
         },
         { withCredentials: true },
       )
-      .then(res => {
+      .then(() => {
         setFavorite(true);
       });
   };
@@ -40,7 +40,7 @@ const HouseDetail = () => {
   const deleteFromFavorite = () => {
     axios
       .delete(`http://localhost:4000/favorites/${id}`, { withCredentials: true })
-      .then(res => {
+      .then(() => {
         setFavorite(false);
       });
   };
@@ -77,9 +77,9 @@ const HouseDetail = () => {
           </div>
           <div className="favoriteCard">
             {favorite ? (
-              <h2 onClick={deleteFromFavorite}>Remove from favorite</h2>
+              <span role="button" tabIndex="0" onKeyPress={deleteFromFavorite} onClick={deleteFromFavorite}>Remove from favorite</span>
             ) : (
-              <h2 onClick={addToFavorite}>Add to favorite</h2>
+              <span role="button" tabIndex="0" onKeyPress={addToFavorite} onClick={addToFavorite}>Add to favorite</span>
             )}
           </div>
         </>

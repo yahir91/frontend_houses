@@ -35,9 +35,6 @@ const Session = () => {
           dispatch(changeLogStatus('log_in'));
           history.push('/dashboard');
         }
-      })
-      .catch(error => {
-        console.log('registration error', error);
       });
   };
 
@@ -63,7 +60,7 @@ const Session = () => {
           onChange={e => setPassword(e.target.value)}
           required
         />
-        <button type="Submit">Sign In</button>
+        <button type="submit">Sign In</button>
       </form>
       <Link to="/register"><span>Register</span></Link>
     </div>

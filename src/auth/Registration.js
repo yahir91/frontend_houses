@@ -11,7 +11,7 @@ import '../styles/session.css';
 const Registration = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [password_confirmation, setPasswordConfirmation] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const dispatch = useDispatch();
   const history = useHistory();
   const cookies = new Cookies();
@@ -25,7 +25,7 @@ const Registration = () => {
           user: {
             username,
             password,
-            password_confirmation,
+            passwordConfirmation,
           },
         },
         { withCredentials: true },
@@ -39,9 +39,6 @@ const Registration = () => {
           dispatch(addUserData(res.data.user));
           history.push('/dashboard');
         }
-      })
-      .catch(error => {
-        console.log('registration error', error);
       });
   };
 
@@ -71,11 +68,11 @@ const Registration = () => {
           className="confirmation"
           type="password"
           placeholder="Password Confirmation"
-          value={password_confirmation}
+          value={passwordConfirmation}
           onChange={e => setPasswordConfirmation(e.target.value)}
           required
         />
-        <button type="Submit">Register</button>
+        <button type="submit">Register</button>
       </form>
       <Link to="/"><span>Sign in</span></Link>
     </div>

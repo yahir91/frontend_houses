@@ -97,7 +97,7 @@
   align-items: center;
 }
 
-.favoriteCard button {
+.favoriteCard span {
   font-size: 1.5rem;
   margin: 5% auto;
 }
