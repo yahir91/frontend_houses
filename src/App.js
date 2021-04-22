@@ -11,12 +11,14 @@ import HouseDetail from './components/HouseDetail';
 import CreateHouse from './components/CreateHouse';
 import Session from './auth/Session';
 import Registration from './auth/Registration';
+import baseUrl from './request/requestUrl';
 
 const fetchItems = status => async dispatch => {
   axios
-    .get('http://localhost:4000/logged_in', { withCredentials: true })
+    .get(`${baseUrl}/logged_in`, { withCredentials: true })
     .then(res => {
       dispatch(addUserData(res.data.user));
+      console.log(res.data.user);
       if (res.data.logged_in && status === 'not_log') {
         dispatch(changeLogStatus('log_in'));
         dispatch(addUserData(res.data.user));

@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import { addUserData } from '../redux/userData';
 import { changeLogStatus } from '../redux/authentication';
-import baseUrl from '../request/baseUrl';
+import baseUrl from '../request/requestUrl';
 
 const Dropwdown = () => {
   const cookies = new Cookies();
@@ -14,7 +14,7 @@ const Dropwdown = () => {
   const { user } = useSelector(state => state.userData);
   const handleLogOut = () => {
     axios
-      .delete(`${baseUrl}:4000/logout`, { withCredentials: true })
+      .delete(`${baseUrl}/logout`, { withCredentials: true })
       .then(res => {
         if (res.data.logged_out) {
           history.push('./');
@@ -27,7 +27,7 @@ const Dropwdown = () => {
   return (
     <div className="dropdown">
       <img className="round" src="/imgs/user-icon-image-22.jpg" alt="default-user" />
-      <span className="username">{user.username}</span>
+      {user && <span className="username">{user.username}</span>}
       <span>Dashboard</span>
       <span>Notifications</span>
       <span>Messages</span>

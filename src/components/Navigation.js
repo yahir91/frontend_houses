@@ -48,7 +48,7 @@ const Navigation = ({ handleFavorite, toogleFavorite }) => {
 
 Navigation.propTypes = {
   handleFavorite: PropTypes.func.isRequired,
-  toogleFavorite: PropTypes.func.isRequired,
+  toogleFavorite: PropTypes.bool.isRequired,
 };
 
 export default Navigation;

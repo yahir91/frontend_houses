@@ -7,7 +7,7 @@ import Cookies from 'universal-cookie';
 import { changeLogStatus } from '../redux/authentication';
 import { addUserData } from '../redux/userData';
 import '../styles/session.css';
-import baseUrl from '../request/baseUrl';
+import baseUrl from '../request/requestUrl';
 
 const Registration = () => {
   const [username, setUsername] = useState('');

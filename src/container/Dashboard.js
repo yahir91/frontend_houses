@@ -8,7 +8,7 @@ import Navigation from '../components/Navigation';
 import Dropdown from '../components/Dropdown';
 import '../styles/houseList.css';
 import '../styles/dashboard.css';
-import baseUrl from '../request/baseUrl';
+import baseUrl from '../request/requestUrl';
 
 const Dashboard = () => {
   const [houseList, setHouseList] = useState(null);
@@ -26,6 +26,7 @@ const Dashboard = () => {
       .then(res => {
         setFavorite(res.data.favorites_houses);
         setFavoriteUrls(res.data.favorite_urls);
+        console.log(res.data);
       });
   }, []);
 

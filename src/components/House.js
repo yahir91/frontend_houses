@@ -31,9 +31,15 @@ House.propTypes = {
     rent: PropTypes.string,
     description: PropTypes.string,
     id: PropTypes.number,
+    created_at: PropTypes.string,
+    updated_at: PropTypes.string,
   }).isRequired,
   index: PropTypes.number.isRequired,
-  urls: PropTypes.arrayOf(PropTypes.string).isRequired,
+  urls: PropTypes.arrayOf(PropTypes.string),
+};
+
+House.defaultProps = {
+  urls: [],
 };
 
 export default House;

@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import '../styles/houseDetail.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import baseUrl from '../request/baseUrl';
+import baseUrl from '../request/requestUrl';
 
 const HouseDetail = () => {
   const { id } = useParams();

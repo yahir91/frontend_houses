@@ -1,5 +1,5 @@
 import axios from 'axios';
-import baseUrl from './baseUrl';
+import baseUrl from './requestUrl';
 
 const createHouse = formData => {
   axios.post(`${baseUrl}/houses`, formData, {

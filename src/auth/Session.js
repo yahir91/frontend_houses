@@ -6,7 +6,7 @@ import Cookies from 'universal-cookie';
 import { addUserData } from '../redux/userData';
 import { changeLogStatus } from '../redux/authentication';
 import '../styles/session.css';
-import baseUrl from '../request/baseUrl';
+import baseUrl from '../request/requestUrl';
 
 const Session = () => {
   const [username, setUsername] = useState('');
@@ -18,7 +18,8 @@ const Session = () => {
     e.preventDefault();
     axios
       .post(
-        `${baseUrl}sessions`,
+        // 'http://localhost:4000/sessions',
+        `${baseUrl}/sessions`,
         {
           user: {
             username,
@@ -29,6 +30,7 @@ const Session = () => {
       )
       .then(res => {
         if (res.data.status === 'created') {
+          console.log(res.data.sessin);
           cookies.set('TOKEN', 'pacman', {
             path: '/',
           });
