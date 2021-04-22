@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import Dashboard from './components/Dashboard';
+import Dashboard from './container/Dashboard';
 import { addUserData } from './redux/userData';
 import { changeLogStatus } from './redux/authentication';
 import ProtectedRoute from './components/ProtectedRoute';

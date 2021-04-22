@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import { addUserData } from '../redux/userData';
 import { changeLogStatus } from '../redux/authentication';
+import baseUrl from '../request/baseUrl';
 
 const Dropwdown = () => {
   const cookies = new Cookies();
@@ -13,7 +14,7 @@ const Dropwdown = () => {
   const { user } = useSelector(state => state.userData);
   const handleLogOut = () => {
     axios
-      .delete('http://localhost:4000/logout', { withCredentials: true })
+      .delete(`${baseUrl}:4000/logout`, { withCredentials: true })
       .then(res => {
         if (res.data.logged_out) {
           history.push('./');

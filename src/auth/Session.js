@@ -6,6 +6,7 @@ import Cookies from 'universal-cookie';
 import { addUserData } from '../redux/userData';
 import { changeLogStatus } from '../redux/authentication';
 import '../styles/session.css';
+import baseUrl from '../request/baseUrl';
 
 const Session = () => {
   const [username, setUsername] = useState('');
@@ -17,7 +18,7 @@ const Session = () => {
     e.preventDefault();
     axios
       .post(
-        'http://localhost:4000/sessions',
+        `${baseUrl}sessions`,
         {
           user: {
             username,

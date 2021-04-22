@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { useState } from 'react';
+import createHouse from '../request/createHouseRequest';
 
 const CreateHouse = () => {
   const [title, setTitle] = useState('');
@@ -13,16 +13,7 @@ const CreateHouse = () => {
     formData.append('description', description);
     formData.append('rent', rent);
     formData.append('image', image);
-    axios
-      .post(
-        'http://localhost:4000/houses',
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        },
-      );
+    createHouse(formData);
   };
 
   return (

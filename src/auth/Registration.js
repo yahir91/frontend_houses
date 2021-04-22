@@ -7,6 +7,7 @@ import Cookies from 'universal-cookie';
 import { changeLogStatus } from '../redux/authentication';
 import { addUserData } from '../redux/userData';
 import '../styles/session.css';
+import baseUrl from '../request/baseUrl';
 
 const Registration = () => {
   const [username, setUsername] = useState('');
@@ -20,7 +21,7 @@ const Registration = () => {
     e.preventDefault();
     axios
       .post(
-        'http://localhost:4000/registration',
+        `${baseUrl}/registration`,
         {
           user: {
             username,

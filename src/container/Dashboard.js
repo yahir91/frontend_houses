@@ -2,12 +2,13 @@ import ScrollMenu from 'react-horizontal-scrolling-menu';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
-import Arrow from './Arrow';
-import HouseList from '../container/HouseList';
-import Navigation from './Navigation';
-import Dropdown from './Dropdown';
+import Arrow from '../components/Arrow';
+import HouseList from './HouseList';
+import Navigation from '../components/Navigation';
+import Dropdown from '../components/Dropdown';
 import '../styles/houseList.css';
 import '../styles/dashboard.css';
+import baseUrl from '../request/baseUrl';
 
 const Dashboard = () => {
   const [houseList, setHouseList] = useState(null);
@@ -16,12 +17,12 @@ const Dashboard = () => {
   const [toogleFavorite, setToogleFavorite] = useState(false);
   const [favoriteUrls, setFavoriteUrls] = useState(null);
   useEffect(() => {
-    axios.get('http://localhost:4000/houses').then(res => {
+    axios.get(`${baseUrl}/houses`).then(res => {
       setHouseList(res.data.house);
       setUrls(res.data.urls);
     });
     axios
-      .get('http://localhost:4000/favorites', { withCredentials: true })
+      .get(`${baseUrl}/favorites`, { withCredentials: true })
       .then(res => {
         setFavorite(res.data.favorites_houses);
         setFavoriteUrls(res.data.favorite_urls);

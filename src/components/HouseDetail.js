@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import '../styles/houseDetail.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import baseUrl from '../request/baseUrl';
 
 const HouseDetail = () => {
   const { id } = useParams();
@@ -13,7 +14,7 @@ const HouseDetail = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/houses/${id}`, { withCredentials: true })
+      .get(`${baseUrl}/houses/${id}`, { withCredentials: true })
       .then(res => {
         setHouse(res.data.house);
         setUrl(res.data.url);
@@ -24,7 +25,7 @@ const HouseDetail = () => {
   const addToFavorite = () => {
     axios
       .post(
-        'http://localhost:4000/favorites',
+        `${baseUrl}/favorites`,
         {
           house: {
             id,
@@ -39,7 +40,9 @@ const HouseDetail = () => {
 
   const deleteFromFavorite = () => {
     axios
-      .delete(`http://localhost:4000/favorites/${id}`, { withCredentials: true })
+      .delete(`${baseUrl}/favorites/${id}`, {
+        withCredentials: true,
+      })
       .then(() => {
         setFavorite(false);
       });
@@ -77,9 +80,23 @@ const HouseDetail = () => {
           </div>
           <div className="favoriteCard">
             {favorite ? (
-              <span role="button" tabIndex="0" onKeyPress={deleteFromFavorite} onClick={deleteFromFavorite}>Remove from favorite</span>
+              <span
+                role="button"
+                tabIndex="0"
+                onKeyPress={deleteFromFavorite}
+                onClick={deleteFromFavorite}
+              >
+                Remove from favorite
+              </span>
             ) : (
-              <span role="button" tabIndex="0" onKeyPress={addToFavorite} onClick={addToFavorite}>Add to favorite</span>
+              <span
+                role="button"
+                tabIndex="0"
+                onKeyPress={addToFavorite}
+                onClick={addToFavorite}
+              >
+                Add to favorite
+              </span>
             )}
           </div>
         </>
