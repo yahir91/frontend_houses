@@ -30,7 +30,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
 
 ProtectedRoute.propTypes = {
   component: PropTypes.elementType.isRequired,
-  location: PropTypes.string,
+  location: PropTypes.oneOfType([PropTypes.object]),
 };
 
 ProtectedRoute.defaultProps = {
