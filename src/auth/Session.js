@@ -6,10 +6,10 @@ import Cookies from 'universal-cookie';
 import { addUserData } from '../redux/userData';
 import { changeLogStatus } from '../redux/authentication';
 import '../styles/session.css';
-import baseUrl from '../request/requestUrl';
+// import baseUrl from '../request/requestUrl';
 
 const Session = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const history = useHistory();
@@ -18,20 +18,20 @@ const Session = () => {
     e.preventDefault();
     axios
       .post(
-        // 'http://localhost:4000/sessions',
-        `${baseUrl}/sessions`,
+        'http://localhost:4000/users/sign_in',
+        // `${baseUrl}/sessions`,
         {
-          user: {
-            username,
-            password,
-          },
+          email,
+          password,
         },
         { withCredentials: true },
       )
       .then(res => {
-        if (res.data.status === 'created') {
-          console.log(res.data.sessin);
-          cookies.set('TOKEN', 'pacman', {
+        console.log(res);
+        if (res.data.status === 'success') {
+          console.log(res.data);
+          const { token } = res.data;
+          cookies.set('TOKEN', token, {
             path: '/',
           });
           dispatch(addUserData(res.data.user));
@@ -50,10 +50,10 @@ const Session = () => {
       </div>
       <form className="form" onSubmit={handleSubmit}>
         <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
           required
         />
         <input

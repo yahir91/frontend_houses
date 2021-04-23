@@ -7,10 +7,11 @@ import Cookies from 'universal-cookie';
 import { changeLogStatus } from '../redux/authentication';
 import { addUserData } from '../redux/userData';
 import '../styles/session.css';
-import baseUrl from '../request/requestUrl';
+// import baseUrl from '../request/requestUrl';
 
 const Registration = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const dispatch = useDispatch();
@@ -21,18 +22,17 @@ const Registration = () => {
     e.preventDefault();
     axios
       .post(
-        `${baseUrl}/registration`,
+        // `${baseUrl}/registration`,
+        'http://localhost:4000/users/sign_up',
         {
-          user: {
-            username,
-            password,
-            passwordConfirmation,
-          },
+          email,
+          password,
+          passwordConfirmation,
+          name,
         },
-        { withCredentials: true },
       )
       .then(res => {
-        if (res.data.status === 'created') {
+        if (res.data.status === 'success') {
           cookies.set('TOKEN', 'pacman', {
             path: '/',
           });
@@ -52,10 +52,17 @@ const Registration = () => {
       </div>
       <form className="form" onSubmit={handleSubmit}>
         <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          required
+        />
+        <input
           type="text"
           placeholder="Username"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
+          value={name}
+          onChange={e => setName(e.target.value)}
           required
         />
         <input

@@ -3,7 +3,10 @@ import { useParams, Link } from 'react-router-dom';
 import '../styles/houseDetail.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 import baseUrl from '../request/requestUrl';
+
+const cookies = new Cookies();
 
 const HouseDetail = () => {
   const { id } = useParams();
@@ -11,10 +14,14 @@ const HouseDetail = () => {
   const [house, setHouse] = useState(null);
   const [url, setUrl] = useState(null);
   const [favorite, setFavorite] = useState(null);
+  const token = cookies.get('TOKEN');
 
   useEffect(() => {
     axios
-      .get(`${baseUrl}/houses/${id}`, { withCredentials: true })
+      .get(
+        `${baseUrl}/houses/${id}`,
+        { headers: { Authorization: `Bearer ${token}` } },
+      )
       .then(res => {
         setHouse(res.data.house);
         setUrl(res.data.url);
@@ -31,7 +38,8 @@ const HouseDetail = () => {
             id,
           },
         },
-        { withCredentials: true },
+        { headers: { Authorization: `Bearer ${token}` } },
+
       )
       .then(() => {
         setFavorite(true);
@@ -41,7 +49,7 @@ const HouseDetail = () => {
   const deleteFromFavorite = () => {
     axios
       .delete(`${baseUrl}/favorites/${id}`, {
-        withCredentials: true,
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then(() => {
         setFavorite(false);

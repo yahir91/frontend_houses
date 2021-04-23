@@ -13,10 +13,12 @@ const Dropwdown = () => {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.userData);
   const handleLogOut = () => {
+    const token = cookies.get('TOKEN');
     axios
-      .delete(`${baseUrl}/logout`, { withCredentials: true })
+      .delete(`${baseUrl}/users/sign_out`, { headers: { Authorization: `Bearer ${token}` } })
       .then(res => {
-        if (res.data.logged_out) {
+        console.log(res.data);
+        if (res.data.status === 'success') {
           history.push('./');
           dispatch(changeLogStatus('not_log'));
           dispatch(addUserData({}));
