@@ -65,6 +65,7 @@ const Registration = () => {
           required
         />
         <input
+          className="confirmation"
           type="password"
           placeholder="Password"
           value={password}

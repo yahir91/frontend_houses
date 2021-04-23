@@ -4,8 +4,6 @@
   flex-direction: column;
   justify-content: space-evenly;
   height: 100vh;
-
-  /* background-image: url("./imgs/background.jpg"); */
 }
 
 .session img {
