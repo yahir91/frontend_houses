@@ -6,7 +6,7 @@ import Cookies from 'universal-cookie';
 import { addUserData } from '../redux/userData';
 import { changeLogStatus } from '../redux/authentication';
 import '../styles/session.css';
-// import baseUrl from '../request/requestUrl';
+import baseUrl from '../request/requestUrl';
 
 const Session = () => {
   const [email, setEmail] = useState('');
@@ -18,8 +18,7 @@ const Session = () => {
     e.preventDefault();
     axios
       .post(
-        'http://localhost:4000/users/sign_in',
-        // `${baseUrl}/sessions`,
+        `${baseUrl}/users/sign_in`,
         {
           email,
           password,
@@ -27,9 +26,7 @@ const Session = () => {
         { withCredentials: true },
       )
       .then(res => {
-        console.log(res);
         if (res.data.status === 'success') {
-          console.log(res.data);
           const { token } = res.data;
           cookies.set('TOKEN', token, {
             path: '/',

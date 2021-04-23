@@ -1,3 +1,3 @@
-const baseUrl = 'http://localhost:4000';
+const baseUrl = 'https://houses-api-yahir.herokuapp.com';
 
 export default baseUrl;

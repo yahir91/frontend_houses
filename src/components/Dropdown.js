@@ -17,7 +17,6 @@ const Dropwdown = () => {
     axios
       .delete(`${baseUrl}/users/sign_out`, { headers: { Authorization: `Bearer ${token}` } })
       .then(res => {
-        console.log(res.data);
         if (res.data.status === 'success') {
           history.push('./');
           dispatch(changeLogStatus('not_log'));

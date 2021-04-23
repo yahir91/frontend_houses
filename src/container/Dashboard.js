@@ -38,7 +38,6 @@ const Dashboard = () => {
       .then(res => {
         setFavorite(res.data.favorites_houses);
         setFavoriteUrls(res.data.favorite_urls);
-        console.log(res.data);
       });
   }, []);
 

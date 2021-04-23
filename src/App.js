@@ -18,7 +18,6 @@ const fetchItems = status => async dispatch => {
     .get(`${baseUrl}/logged_in`, { withCredentials: true })
     .then(res => {
       dispatch(addUserData(res.data.user));
-      console.log(res.data.user);
       if (res.data.logged_in && status === 'not_log') {
         dispatch(changeLogStatus('log_in'));
         dispatch(addUserData(res.data.user));
