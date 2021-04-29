@@ -82,3 +82,8 @@ a {
 span {
   color: #808080;
 }
+
+.error {
+  text-align: center;
+  color: red;
+}

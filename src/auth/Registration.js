@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import axios from 'axios';
 import { useHistory, Link } from 'react-router-dom';
 
 import Cookies from 'universal-cookie';
 import { changeLogStatus } from '../redux/authentication';
 import { addUserData } from '../redux/userData';
 import '../styles/session.css';
-import baseUrl from '../request/requestUrl';
+import authRequests from '../request/requestUrl';
 
 const Registration = () => {
   const [email, setEmail] = useState('');
@@ -20,19 +19,14 @@ const Registration = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    axios
-      .post(
-        `${baseUrl}/users/sign_up`,
-        {
-          email,
-          password,
-          passwordConfirmation,
-          name,
-        },
-      )
+    const data = {
+      email, password, passwordConfirmation, name,
+    };
+    authRequests('post', '/users/sign_up', data)
       .then(res => {
         if (res.data.status === 'success') {
-          cookies.set('TOKEN', 'pacman', {
+          const { token } = res.data;
+          cookies.set('TOKEN', token, {
             path: '/',
           });
           dispatch(changeLogStatus('log_in'));
@@ -82,7 +76,9 @@ const Registration = () => {
         />
         <button type="submit">Register</button>
       </form>
-      <Link to="/"><span>Sign in</span></Link>
+      <Link to="/">
+        <span>Sign in</span>
+      </Link>
     </div>
   );
 };

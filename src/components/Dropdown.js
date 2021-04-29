@@ -1,11 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
 import Cookies from 'universal-cookie';
 import { addUserData } from '../redux/userData';
 import { changeLogStatus } from '../redux/authentication';
-import baseUrl from '../request/requestUrl';
+import { logOutRequest } from '../request/requestUrl';
 
 const Dropwdown = () => {
   const cookies = new Cookies();
@@ -14,8 +13,8 @@ const Dropwdown = () => {
   const { user } = useSelector(state => state.userData);
   const handleLogOut = () => {
     const token = cookies.get('TOKEN');
-    axios
-      .delete(`${baseUrl}/users/sign_out`, { headers: { Authorization: `Bearer ${token}` } })
+    const headers = { headers: { Authorization: `Bearer ${token}` } };
+    logOutRequest('delete', '/users/sign_out', headers)
       .then(res => {
         if (res.data.status === 'success') {
           history.push('./');

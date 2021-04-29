@@ -2,9 +2,8 @@ import { useParams, Link } from 'react-router-dom';
 
 import '../styles/houseDetail.css';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import Cookies from 'universal-cookie';
-import baseUrl from '../request/requestUrl';
+import { getAndDeleteRequests, addToFavorites } from '../request/requestUrl';
 
 const cookies = new Cookies();
 
@@ -13,16 +12,17 @@ const HouseDetail = () => {
   const arrow = '<';
   const [house, setHouse] = useState(null);
   const [url, setUrl] = useState(null);
-  const [favorite, setFavorite] = useState(null);
+  const [favorite, setFavorite] = useState(false);
   const token = cookies.get('TOKEN');
 
   useEffect(() => {
-    axios
-      .get(
-        `${baseUrl}/houses/${id}`,
-        { headers: { Authorization: `Bearer ${token}` } },
-      )
+    const token = cookies.get('TOKEN');
+
+    const headers = { headers: { Authorization: `Bearer ${token}` } };
+    const path = `/houses/${id}`;
+    getAndDeleteRequests('get', path, headers)
       .then(res => {
+        console.log(res.data.favorite);
         setHouse(res.data.house);
         setUrl(res.data.url);
         setFavorite(res.data.favorite);
@@ -30,30 +30,24 @@ const HouseDetail = () => {
   }, []);
 
   const addToFavorite = () => {
-    axios
-      .post(
-        `${baseUrl}/favorites`,
-        {
-          house: {
-            id,
-          },
-        },
-        { headers: { Authorization: `Bearer ${token}` } },
+    const data = {
+      house: {
+        id,
+      },
+    };
+    const headers = { headers: { Authorization: `Bearer ${token}` } };
 
-      )
-      .then(() => {
-        setFavorite(true);
-      });
+    addToFavorites('post', '/favorites', data, headers).then(() => {
+      setFavorite(true);
+    });
   };
 
   const deleteFromFavorite = () => {
-    axios
-      .delete(`${baseUrl}/favorites/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then(() => {
-        setFavorite(false);
-      });
+    const headers = { headers: { Authorization: `Bearer ${token}` } };
+
+    getAndDeleteRequests('delete', `/favorites/${id}`, headers).then(() => {
+      setFavorite(false);
+    });
   };
 
   return (

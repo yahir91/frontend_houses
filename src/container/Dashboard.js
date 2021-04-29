@@ -1,5 +1,4 @@
 import ScrollMenu from 'react-horizontal-scrolling-menu';
-import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import Cookies from 'universal-cookie';
@@ -9,7 +8,7 @@ import Navigation from '../components/Navigation';
 import Dropdown from '../components/Dropdown';
 import '../styles/houseList.css';
 import '../styles/dashboard.css';
-import baseUrl from '../request/requestUrl';
+import { getAndDeleteRequests } from '../request/requestUrl';
 
 const cookies = new Cookies();
 
@@ -21,24 +20,16 @@ const Dashboard = () => {
   const [favoriteUrls, setFavoriteUrls] = useState(null);
   useEffect(() => {
     const token = cookies.get('TOKEN');
-    axios
-      .get(`${baseUrl}/houses`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+    const headers = { headers: { Authorization: `Bearer ${token}` } };
+    getAndDeleteRequests('get', '/houses', headers)
       .then(res => {
         setHouseList(res.data.house);
         setUrls(res.data.urls);
       });
-    axios
-      .get(
-        `${baseUrl}/favorites`,
-        { headers: { Authorization: `Bearer ${token}` } },
-        { withCredentials: true },
-      )
-      .then(res => {
-        setFavorite(res.data.favorites_houses);
-        setFavoriteUrls(res.data.favorite_urls);
-      });
+    getAndDeleteRequests('get', '/favorites', headers).then(res => {
+      setFavorite(res.data.favorites_houses);
+      setFavoriteUrls(res.data.favorite_urls);
+    });
   }, []);
 
   const toogleFavorites = () => {
