@@ -22,7 +22,6 @@ const HouseDetail = () => {
     const path = `/houses/${id}`;
     getAndDeleteRequests('get', path, headers)
       .then(res => {
-        console.log(res.data.favorite);
         setHouse(res.data.house);
         setUrl(res.data.url);
         setFavorite(res.data.favorite);

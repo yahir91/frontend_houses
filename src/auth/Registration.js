@@ -6,7 +6,7 @@ import Cookies from 'universal-cookie';
 import { changeLogStatus } from '../redux/authentication';
 import { addUserData } from '../redux/userData';
 import '../styles/session.css';
-import authRequests from '../request/requestUrl';
+import { authRequests } from '../request/requestUrl';
 
 const Registration = () => {
   const [email, setEmail] = useState('');
