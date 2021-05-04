@@ -3,8 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import Cookies from 'universal-cookie';
 import { addUserData } from '../redux/userData';
-import { changeLogStatus } from '../redux/authentication';
-import { logOutRequest } from '../request/requestUrl';
+import { logOutRequest } from '../logic/requestUrl';
 
 const Dropwdown = () => {
   const cookies = new Cookies();
@@ -18,7 +17,6 @@ const Dropwdown = () => {
       .then(res => {
         if (res.data.status === 'success') {
           history.push('./');
-          dispatch(changeLogStatus('not_log'));
           dispatch(addUserData({}));
           cookies.remove('TOKEN', { path: '/' });
         }
@@ -27,7 +25,7 @@ const Dropwdown = () => {
   return (
     <div className="dropdown">
       <img className="round" src="/imgs/user-icon-image-22.jpg" alt="default-user" />
-      {user && <span className="username">{user.username}</span>}
+      {user && <span className="username">{user.name}</span>}
       <span>Dashboard</span>
       <span>Notifications</span>
       <span>Messages</span>

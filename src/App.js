@@ -3,9 +3,8 @@ import Dashboard from './container/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
 import HouseDetail from './components/HouseDetail';
-import CreateHouse from './components/CreateHouse';
-import Session from './auth/Session';
-import Registration from './auth/Registration';
+import Session from './components/Session';
+import Registration from './components/Registration';
 
 function App() {
   return (
@@ -16,9 +15,6 @@ function App() {
         </Route>
         <Route exact path="/register">
           <Registration />
-        </Route>
-        <Route exact path="/create">
-          <CreateHouse />
         </Route>
         <ProtectedRoute
           exact

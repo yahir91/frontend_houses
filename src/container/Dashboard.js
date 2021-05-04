@@ -8,7 +8,7 @@ import Navigation from '../components/Navigation';
 import Dropdown from '../components/Dropdown';
 import '../styles/houseList.css';
 import '../styles/dashboard.css';
-import { getAndDeleteRequests } from '../request/requestUrl';
+import { getAndDeleteRequests } from '../logic/requestUrl';
 
 const cookies = new Cookies();
 

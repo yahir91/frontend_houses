@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
+
 import Cookies from 'universal-cookie';
 import { addUserData } from '../redux/userData';
-import { changeLogStatus } from '../redux/authentication';
 import '../styles/session.css';
-import { authRequests } from '../request/requestUrl';
+import { authRequests } from '../logic/requestUrl';
 
-const Session = () => {
+const Registration = () => {
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(false);
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const dispatch = useDispatch();
   const history = useHistory();
   const cookies = new Cookies();
@@ -18,11 +19,9 @@ const Session = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const data = {
-      email,
-      password,
+      email, password, passwordConfirmation, name,
     };
-
-    authRequests('post', '/users/sign_in', data)
+    authRequests('post', '/users/sign_up', data)
       .then(res => {
         if (res.data.status === 'success') {
           const { token } = res.data;
@@ -30,12 +29,8 @@ const Session = () => {
             path: '/',
           });
           dispatch(addUserData(res.data.user));
-          dispatch(changeLogStatus('log_in'));
           history.push('/dashboard');
         }
-      })
-      .catch(() => {
-        setError(true);
       });
   };
 
@@ -43,8 +38,8 @@ const Session = () => {
     <div className="session">
       <div>
         <img src="/imgs/background.jpg" alt="background" />
-        <h1>Sign in</h1>
-        <p>Hello there! Sign in and start managing your system</p>
+        <h1>Register</h1>
+        <p>Hello there! Register and start managing your system</p>
       </div>
       <form className="form" onSubmit={handleSubmit}>
         <input
@@ -55,20 +50,35 @@ const Session = () => {
           required
         />
         <input
+          type="text"
+          placeholder="Username"
+          value={name}
+          onChange={e => setName(e.target.value)}
+          required
+        />
+        <input
+          className="confirmation"
           type="password"
           placeholder="Password"
           value={password}
           onChange={e => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Sign In</button>
+        <input
+          className="confirmation"
+          type="password"
+          placeholder="Password Confirmation"
+          value={passwordConfirmation}
+          onChange={e => setPasswordConfirmation(e.target.value)}
+          required
+        />
+        <button type="submit">Register</button>
       </form>
-      {error && <span className="error">Wrong email or password</span>}
-      <Link to="/register">
-        <span>Register</span>
+      <Link to="/">
+        <span>Sign in</span>
       </Link>
     </div>
   );
 };
 
-export default Session;
+export default Registration;

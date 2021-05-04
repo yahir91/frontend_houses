@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'https://yahir-houses-frontend.herokuapp.com';
+const baseUrl = 'http://localhost:4000';
 
 export const authRequests = async (method, path, data) => {
   const result = await axios[method](`${baseUrl}/${path}`, data);

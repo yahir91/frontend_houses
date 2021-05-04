@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import '../styles/houseDetail.css';
 import { useState, useEffect } from 'react';
 import Cookies from 'universal-cookie';
-import { getAndDeleteRequests, addToFavorites } from '../request/requestUrl';
+import { getAndDeleteRequests, addToFavorites } from '../logic/requestUrl';
 
 const cookies = new Cookies();
 
