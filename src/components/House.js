@@ -28,6 +28,7 @@ const House = ({ house, index, urls }) => (
 House.propTypes = {
   house: PropTypes.exact({
     title: PropTypes.string,
+    url: PropTypes.string,
     rent: PropTypes.string,
     description: PropTypes.string,
     id: PropTypes.number,

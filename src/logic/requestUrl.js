@@ -1,9 +1,18 @@
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
-const baseUrl = 'https://houses-api-yahir.herokuapp.com';
+const baseUrl = 'http://localhost:4000';
 
-export const authRequests = async (method, path, data) => {
-  const result = await axios[method](`${baseUrl}/${path}`, data);
+const cookies = new Cookies();
+
+export const useAxios = async (path, data) => {
+  const result = await axios.post(`http://localhost:4000/${path}`, data)
+    .then(res => {
+      const { token } = res.data;
+      cookies.set('TOKEN', token, {
+        path: '/',
+      });
+    });
 
   return result;
 };

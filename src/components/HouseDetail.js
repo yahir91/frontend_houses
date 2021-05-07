@@ -20,12 +20,16 @@ const HouseDetail = () => {
 
     const headers = { headers: { Authorization: `Bearer ${token}` } };
     const path = `/houses/${id}`;
+    const pathFav = `/favorites/${id}`;
     getAndDeleteRequests('get', path, headers)
       .then(res => {
         setHouse(res.data.house);
         setUrl(res.data.url);
-        setFavorite(res.data.favorite);
       });
+
+    getAndDeleteRequests('get', pathFav, headers).then(res => {
+      setFavorite(res.data.favorite);
+    });
   }, []);
 
   const addToFavorite = () => {
