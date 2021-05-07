@@ -1,12 +1,12 @@
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 
-const baseUrl = 'http://localhost:4000';
+const baseUrl = 'https://houses-api-yahir.herokuapp.com/';
 
 const cookies = new Cookies();
 
 export const useAxios = async (path, data) => {
-  const result = await axios.post(`http://localhost:4000/${path}`, data)
+  const result = await axios.post(`https://houses-api-yahir.herokuapp.com/${path}`, data)
     .then(res => {
       const { token } = res.data;
       cookies.set('TOKEN', token, {
