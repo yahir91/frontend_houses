@@ -1,0 +1,65 @@
+.dashboard {
+  display: flex;
+  background-image:
+    linear-gradient(
+      to bottom,
+      #fff,
+      #fdfdfe,
+      #fbfafd,
+      #f9f8fb,
+      #f7f5fa
+    );
+  height: 100vh;
+}
+
+.scroll {
+  width: 100vw;
+  height: 85vh;
+  margin: 0 auto;
+}
+
+.box-shadow {
+  box-shadow:
+    -10px 10px 15px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  color: #535354;
+  justify-content: space-evenly;
+  margin-right: 15px;
+  margin-left: 10px;
+}
+
+.round {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 1px solid black;
+  flex-grow: 4;
+  margin: 50px auto;
+}
+
+.dropdown span {
+  flex-grow: 1;
+}
+
+.username {
+  font-size: 1.3em;
+  color: #eb5c2f;
+}
+
+.help {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 3;
+  justify-content: flex-end;
+  border-top: 1px solid #e9e9e9;
+}
+
+.help :last-child {
+  color: #eb5c2f;
+  cursor: pointer;
+}

@@ -1,70 +1,88 @@
-# Getting Started with Create React App
+# Find House App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a mobile app where you can find houses to rent. It has a full functional authentication. Each user can select his favorites houses and filter them.
 
-## Available Scripts
+  <p align="center">
+      <img alt="Light" src="public/imgs/screenshots/Screenshot.png" width="30%">
+  &nbsp; &nbsp; &nbsp; &nbsp;
+    <img alt="Dark" src="public/imgs/screenshots/Screenshot2.png" width="30%">
+  </p>
 
-In the project directory, you can run:
+  <p align="center">
+    <img alt="Dark" src="public/imgs/screenshots/Screenshot3.png " width="30%">
+  &nbsp; &nbsp; &nbsp; &nbsp;
+      <img alt="Light" src="public/imgs/screenshots/Screenshot4.png" width="30%">
+  </p>
 
-### `npm start`
+<!-- ABOUT THE PROJECT -->
+### Features
+* Register your user with email, name and password.
+* Login with secure password and tokens
+* Display a list of houses in a scroll.
+* You can click in each house to see further details.
+* Add to favorites the houses you like.
+* Filter the houses with the ones you add to favorites.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Live Demo
+It's deployed [here](https://yahir-houses-frontend.herokuapp.com)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Built With
+This project was built using these technologies.
+* React
+* JavaScript
+* GitHub
+* Redux
+* Eslint
+* Stylelint
+* VScode
+* Axios
 
-### `npm test`
+### Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To get a local copy up and running follow these simple example steps.
 
-### `npm run build`
+### Prerequisites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ * [Node.js](https://nodejs.org/) is required to install dependencies and run scripts via npm.
+ * A modern browser
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Clone
+* Clone this repo:
+  - Clone with SSH:
+  ```
+    git@github.com:yahir91/frontend_houses.git
+  ```
+  - Clone with HTTPS
+  ```
+    https://github.com/yahir91/frontend_houses.git
+  ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Setup
 
-### `npm run eject`
+Install dependencies:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+$ npm install
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Start the local webserver:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```$ npm start``` will open the project at local webserver at http://localhost:3000/ 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Authors
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 👤 **Yahir Cardona**
+Working as a FullStack developer on this project.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+ [![Website](https://img.shields.io/badge/-Website-black?style=for-the-badge&logo=Julia&logoColor=white)](https://yahir91.github.io/yahir-cardona.github.io/)
 
-### Code Splitting
+ [![LINKEDIN](https://img.shields.io/badge/-LINKEDIN-0077B5?style=for-the-badge&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/yahir-cardona/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Show your support
 
-### Analyzing the Bundle Size
+Give a :star: if you like this project!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 📝 License
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is [MIT](https://opensource.org/licenses/MIT) licensed.
