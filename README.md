@@ -1,18 +1,7 @@
-# Find House App
+# Shopify Frontend App
 
-This project is a mobile app where you can find houses to rent. It has a full functional authentication. Each user can select his favorites houses and filter them.
+This project is a shopify web to send change and order to shipping with a button and the user can cancel the delivery.
 
-  <p align="center">
-      <img alt="Light" src="public/imgs/screenshots/Screenshot.png" width="30%">
-  &nbsp; &nbsp; &nbsp; &nbsp;
-    <img alt="Dark" src="public/imgs/screenshots/Screenshot2.png" width="30%">
-  </p>
-
-  <p align="center">
-    <img alt="Dark" src="public/imgs/screenshots/Screenshot3.png " width="30%">
-  &nbsp; &nbsp; &nbsp; &nbsp;
-      <img alt="Light" src="public/imgs/screenshots/Screenshot4.png" width="30%">
-  </p>
 
 <!-- ABOUT THE PROJECT -->
 ### Features
@@ -23,17 +12,14 @@ This project is a mobile app where you can find houses to rent. It has a full fu
 * Add to favorites the houses you like.
 * Filter the houses with the ones you add to favorites.
 
-## Live Demo
-It's deployed [here](https://yahir-houses-frontend.herokuapp.com)
+### Live Demo
+It's deployed [here](https://shopify-rails.web.app/)
 
 ### Built With
 This project was built using these technologies.
 * React
 * JavaScript
 * GitHub
-* Redux
-* Eslint
-* Stylelint
 * VScode
 * Axios
 
@@ -48,13 +34,10 @@ To get a local copy up and running follow these simple example steps.
 
 ### Clone
 * Clone this repo:
-  - Clone with SSH:
-  ```
-    git@github.com:yahir91/frontend_houses.git
-  ```
+
   - Clone with HTTPS
   ```
-    https://github.com/yahir91/frontend_houses.git
+    https://github.com/yahir91/shopify-react.git
   ```
 
 ### Setup
