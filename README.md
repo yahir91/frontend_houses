@@ -2,6 +2,8 @@
 
 This project is a shopify web to send change and order to shipping with a button and the user can cancel the delivery.
 
+The api for this project in this [link](https://github.com/yahir91/shopify-rails)
+
 
 <!-- ABOUT THE PROJECT -->
 ### Features
